@@ -14,12 +14,16 @@ public class SymmetricDate {
         }
 
         for (int year = fromYear; year < toYear; year++) {
-            int month = year % 10 * 10 + year / 10 % 10;
-            int day = year / 100 % 10 * 10 + year / 1000;
+            int month = reverse(year % 100);
+            int day = reverse(year / 100);
             if (isValidDate(year, month, day)) {
                 System.out.printf("%04d-%02d-%02d\n", year, month, day);
             }
         }
+    }
+
+    private static int reverse(int number) {
+        return number % 10 * 10 + number / 10;
     }
 
     private static boolean isValidDate(int year, int month, int day) {
